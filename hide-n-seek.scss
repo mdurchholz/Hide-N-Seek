@@ -1,0 +1,33 @@
+/* -------------------------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////////////////////////
+HIDE-N-SEEK.CSS
+////////////////////////////////////////////////////////////////////////////////////////////////////
+------------------------------------------------------------------------------------------------- */
+$points: 1024,768,667,480,375;
+
+/* Loop Through Breakpoints
+-----------------------------------------------
+/////////////////////////////////////////////// */
+@each $pt in $points{
+
+.show-#{$pt}                                                { display: none  !important;}
+
+@media screen and (max-width: #{$pt}px){
+.show-#{$pt}                                                { display: block !important;}
+.hide-#{$pt}                                                { display: none  !important;}
+
+table .show-#{$pt}                                          { display: table-cell !important;}
+}
+
+}
+
+.hide                                                       { display: none  !important;}
+.show                                                       { display: block !important;}
+
+/* Mobile v. Desktop
+-----------------------------------------------
+/////////////////////////////////////////////// */
+.desktop .desk,
+.mobile .mobi                                               { display: block;}
+.mobile .desk,
+.desktop .mobi                                              { display: none !important;}
