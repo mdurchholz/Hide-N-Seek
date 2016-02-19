@@ -8,13 +8,12 @@ $points: 1024,768,667,480,375;
 /* Loop Through Breakpoints
 -----------------------------------------------
 /////////////////////////////////////////////// */
-@each $pt in $points{
-
+@each $pt in $points
+{
     .show-#{$pt}                                                { display: none  !important;}
 
     @media screen and (max-width: #{$pt}px)
     {
-
     .show-#{$pt}                                                { display: block !important;}
 
     .show-#{$pt}.nl                                             { display: inline !important;}
@@ -26,9 +25,7 @@ $points: 1024,768,667,480,375;
     table td.show-#{$pt}                                        { display: table-cell !important;}
 
     .hide-#{$pt}                                                { display: none  !important;}
-
     }
-
 }
 
 /* Mobile v. Desktop
@@ -36,7 +33,7 @@ $points: 1024,768,667,480,375;
 /////////////////////////////////////////////// */
 .show,
 .desktop .desk,
-.mobile .mobi                                               { display: block;}
+.mobile .mobi                                                   { display: block;}
 .hide,
 .mobile .desk,
-.desktop .mobi                                              { display: none !important;}
+.desktop .mobi                                                  { display: none !important;}
