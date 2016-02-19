@@ -3,14 +3,23 @@
 HIDE-N-SEEK.CSS
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ------------------------------------------------------------------------------------------------- */
-$points: 1024,768,667,480,375;
+
+.show,
+.desktop .desk,
+.mobile .mobi                                                   { display: block !important;}
+
+.hide,
+.mobile .desk,
+.desktop .mobi                                                  { display: none !important;}
 
 /* Loop Through Breakpoints
 -----------------------------------------------
 /////////////////////////////////////////////// */
+$points: 1024,768,667,480,375;
+
 @each $pt in $points
 {
-    .show-#{$pt}                                                { display: none  !important;}
+    .show-#{$pt}                                                { display: none !important;}
 
     @media screen and (max-width: #{$pt}px)
     {
@@ -24,16 +33,6 @@ $points: 1024,768,667,480,375;
     table th.show-#{$pt},
     table td.show-#{$pt}                                        { display: table-cell !important;}
 
-    .hide-#{$pt}                                                { display: none  !important;}
+    .hide-#{$pt}                                                { display: none !important;}
     }
 }
-
-/* Mobile v. Desktop
------------------------------------------------
-/////////////////////////////////////////////// */
-.show,
-.desktop .desk,
-.mobile .mobi                                                   { display: block;}
-.hide,
-.mobile .desk,
-.desktop .mobi                                                  { display: none !important;}
