@@ -3,10 +3,17 @@
 HIDE-N-SEEK.CSS
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ------------------------------------------------------------------------------------------------- */
+$classes:
+''     'block',
+'.nl'  'inline',
+'.nlb' 'inline-block';
 
-.show,
-.desktop .desk,
-.mobile .mobi                                                   { display: block !important;}
+@each $cls in $classes
+{
+.show#{nth($cls, 1)},
+.desktop .desk#{nth($cls, 1)},
+.mobile .mobi#{nth($cls, 1)}                                    { display: #{nth($cls, 2)} !important;}
+}
 
 .hide,
 .mobile .desk,
@@ -23,16 +30,16 @@ $points: 1024,768,667,480,375;
 
     @media screen and (max-width: #{$pt}px)
     {
-    .show-#{$pt}                                                { display: block !important;}
+        @each $cls in $classes
+        {
+        .show-#{$pt}#{nth($cls, 1)}                             { display: #{nth($cls, 2)} !important;}
+        }
 
-    .show-#{$pt}.nl                                             { display: inline !important;}
-    .show-#{$pt}.nlb                                            { display: inline-block !important;}
+        table.show-#{$pt}                                       { display: table !important;}
+        table tr.show-#{$pt}                                    { display: table-row !important;}
+        table th.show-#{$pt},
+        table td.show-#{$pt}                                    { display: table-cell !important;}
 
-    table.show-#{$pt}                                           { display: table !important;}
-    table tr.show-#{$pt}                                        { display: table-row !important;}
-    table th.show-#{$pt},
-    table td.show-#{$pt}                                        { display: table-cell !important;}
-
-    .hide-#{$pt}                                                { display: none !important;}
+        .hide-#{$pt}                                            { display: none !important;}
     }
 }
