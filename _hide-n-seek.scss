@@ -1,0 +1,68 @@
+/* -------------------------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////////////////////////
+HIDE-N-SEEK | V 2.0.0
+////////////////////////////////////////////////////////////////////////////////////////////////////
+mdurchholz.com | Martin Durchholz
+////////////////////////////////////////////////////////////////////////////////////////////////////
+------------------------------------------------------------------------------------------------- */
+
+/* Import variables
+----------------------------------------
+////////////////////////////////////// */
+@import 'vairables';
+
+
+/* Classname : `display` property
+----------------------------------------
+`get object value` => map-get($map, key)
+----------------------------------------
+////////////////////////////////////// */
+$classes:
+''     'block',
+'.nl'  'inline',
+'.nlb' 'inline-block';
+
+
+/* Create initial display styles
+----------------------------------------
+////////////////////////////////////// */
+@each $c, $p in $classes
+{
+    .show#{$c},
+    .desktop .desk#{$c},
+    .mobile .mobi#{$c}                                          { display: #{$p} !important;}
+}
+
+.hide,
+.mobile .desk,
+.desktop .mobi                                                  { display: none !important;}
+
+
+/* Loop Through Responsive Breakpoints
+----------------------------------------
+////////////////////////////////////// */
+@each $size, $px in $grid-breakpoints
+{
+    .show-#{$size}                                              { display: none !important;}
+
+    @include media-breakpoint( #{$size} )
+    {
+        $class : '.show-' + $size;
+
+        @each $c, $p in $classes
+        {
+            #{($class+$c)}                                      { display: #{$p} !important;}
+        }
+
+        table
+        {
+            &#{$class}                                          { display: table !important;}
+
+            tr#{$class}                                         { display: table-row !important;}
+
+            th, td { &#{$class}                                 { display: table-cell !important;}}
+        }
+
+        .hide-#{$size}                                          { display: none !important;}
+    }
+}
